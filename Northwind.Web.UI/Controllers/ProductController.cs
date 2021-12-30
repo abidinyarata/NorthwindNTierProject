@@ -2,7 +2,7 @@
 
 namespace Northwind.Web.UI.Controllers
 {
-    public class HomeController : Controller
+    public class ProductController : Controller
     {
         public IActionResult Index()
         {

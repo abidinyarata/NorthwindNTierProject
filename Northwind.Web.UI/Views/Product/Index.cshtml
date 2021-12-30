@@ -1,0 +1,81 @@
+﻿@{
+    ViewData["Title"] = "Product";
+
+}
+
+<div class="container">
+    @await Component.InvokeAsync("CategoryList")
+</div>
+
+<hr />
+
+<div class="container pt-5">
+
+    <div class="card">
+        <div class="card-header blog-header text-center">
+            <h2>
+                Product List
+            </h2>
+        </div>
+        <div class="card-body">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Unit Price</th>
+                        <th>Unit in Stock</th>
+                        <th>
+                            <div class="d-grid gap-2 col-6 mx-auto">
+                                <a class="btn btn-success">Add Product</a>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>aaa</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>
+                            <div class="d-grid gap-2 col-6 mx-auto">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-outline-primary">Update</button>
+                                    <button type="button" class="btn btn-outline-danger">Delete</button>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>aaa</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>
+                            <div class="d-grid gap-2 col-6 mx-auto">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-outline-primary">Update</button>
+                                    <button type="button" class="btn btn-outline-danger">Delete</button>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>aaa</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>
+                            <div class="d-grid gap-2 col-6 mx-auto">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-outline-primary">Update</button>
+                                    <button type="button" class="btn btn-outline-danger">Delete</button>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="card-footer">
+            Northwind
+        </div>
+    </div>
+</div>

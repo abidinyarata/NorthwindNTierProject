@@ -15,11 +15,12 @@
 
   <ItemGroup>
     <Folder Include="Models\" />
-    <Folder Include="wwwroot\" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Northwind.Business\Northwind.Business.csproj" />
     <ProjectReference Include="..\Northwind.Entities\Northwind.Entities.csproj" />
+    <ProjectReference Include="..\Northwind.Model\Northwind.Model.csproj" />
   </ItemGroup>
 
 </Project>

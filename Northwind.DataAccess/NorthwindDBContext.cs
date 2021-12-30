@@ -1,8 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Northwind.Entities;
 
 #nullable disable
 
-namespace Northwind.Entities
+namespace Northwind.DataAccess
 {
     public partial class NorthwindDBContext : DbContext
     {
