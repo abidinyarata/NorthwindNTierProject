@@ -24,5 +24,10 @@ namespace Northwind.Web.UI.Controllers
 
             return View(products);
         }
+
+        public IActionResult Add()
+        {
+            return View();
+        }
     }
 }

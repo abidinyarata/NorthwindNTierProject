@@ -10,10 +10,13 @@ namespace Northwind.Web.UI.ViewComponents
     {
         CategoryService _categoryService = new CategoryService();
 
-        public async Task<IViewComponentResult> InvokeAsync()
+        public async Task<IViewComponentResult> InvokeAsync(string toolTip)
         {
             List<CategoryVM> categories = _categoryService.GetCategories();
-            return View(categories);
+            if (toolTip == "navbar")
+                return View("_navbar", categories);
+
+            return View("_comboBox", categories);
         }
     }
 }
