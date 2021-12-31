@@ -9,9 +9,19 @@ namespace Northwind.Web.UI.Controllers
     {
         ProductService _productService = new ProductService();
 
-        public IActionResult Index()
+        public IActionResult Index(int id = 0)
         {
-            List<ProductVM> products = _productService.GetProducts();
+            List<ProductVM> products = null;
+
+            if (id == 0)
+            {
+                products = _productService.GetProducts();
+            }
+            else
+            {
+                products = _productService.GetProductsByCategoryId(id);
+            }
+
             return View(products);
         }
     }

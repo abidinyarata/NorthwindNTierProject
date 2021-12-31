@@ -12,6 +12,12 @@ namespace Northwind.Business
         public List<ProductVM> GetProducts()
         {
             List<Product> products = _productRepository.GetProducts();
+            List<ProductVM> viewProducts = SetProductView(products);
+            return viewProducts;
+        }
+
+        private static List<ProductVM> SetProductView(List<Product> products)
+        {
             List<ProductVM> viewProducts = new List<ProductVM>();
 
             ProductVM productVM;
@@ -28,6 +34,13 @@ namespace Northwind.Business
             }
 
             return viewProducts;
+        }
+
+        public List<ProductVM> GetProductsByCategoryId(int id)
+        {
+            List<Product> productsByCategory = _productRepository.GetProductsByCategoryId(id);
+            List<ProductVM> viewProductsByCategory = SetProductView(productsByCategory);
+            return viewProductsByCategory;
         }
     }
 }
