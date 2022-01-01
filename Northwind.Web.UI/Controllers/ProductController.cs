@@ -11,7 +11,7 @@ namespace Northwind.Web.UI.Controllers
 
         public IActionResult Index(int id = 0)
         {
-            List<ProductVM> products = null;
+            List<ListProductVM> products = null;
 
             if (id == 0)
             {
@@ -26,6 +26,12 @@ namespace Northwind.Web.UI.Controllers
         }
 
         public IActionResult Add()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Add(AddProductVM product)
         {
             return View();
         }

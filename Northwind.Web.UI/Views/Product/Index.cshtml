@@ -1,4 +1,4 @@
-﻿@model List<ProductVM>
+﻿@model List<ListProductVM>
 
 @{
     ViewData["Title"] = "Product";
@@ -30,7 +30,7 @@
                         <th>
                             <div class="d-grid gap-2 col-6 mx-auto">
                                 <div class="btn-group">
-                                    <a class="btn btn-outline-success">Add Product</a>
+                                    <a asp-action="Add" asp-controller="Product" class="btn btn-outline-success">Add Product</a>
                                     <a asp-action="Index" asp-controller="Product" asp-route-id="0" class="btn btn-outline-success">Get All Products</a>
                                 </div>
                             </div>

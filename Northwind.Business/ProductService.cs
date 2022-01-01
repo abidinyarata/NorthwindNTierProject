@@ -9,21 +9,21 @@ namespace Northwind.Business
     {
         ProductRepository _productRepository = new ProductRepository();
 
-        public List<ProductVM> GetProducts()
+        public List<ListProductVM> GetProducts()
         {
             List<Product> products = _productRepository.GetProducts();
-            List<ProductVM> viewProducts = SetProductView(products);
+            List<ListProductVM> viewProducts = SetProductView(products);
             return viewProducts;
         }
 
-        private static List<ProductVM> SetProductView(List<Product> products)
+        private static List<ListProductVM> SetProductView(List<Product> products)
         {
-            List<ProductVM> viewProducts = new List<ProductVM>();
+            List<ListProductVM> viewProducts = new List<ListProductVM>();
 
-            ProductVM productVM;
+            ListProductVM productVM;
             foreach (Product product in products)
             {
-                productVM = new ProductVM
+                productVM = new ListProductVM
                 {
                     ProductId = product.ProductId,
                     ProductName = product.ProductName,
@@ -36,10 +36,10 @@ namespace Northwind.Business
             return viewProducts;
         }
 
-        public List<ProductVM> GetProductsByCategoryId(int id)
+        public List<ListProductVM> GetProductsByCategoryId(int id)
         {
             List<Product> productsByCategory = _productRepository.GetProductsByCategoryId(id);
-            List<ProductVM> viewProductsByCategory = SetProductView(productsByCategory);
+            List<ListProductVM> viewProductsByCategory = SetProductView(productsByCategory);
             return viewProductsByCategory;
         }
     }
