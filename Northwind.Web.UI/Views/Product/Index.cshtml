@@ -28,7 +28,7 @@
                         <th>Unit Price</th>
                         <th>Unit in Stock</th>
                         <th>
-                            <div class="d-grid gap-2 col-6 mx-auto">
+                            <div class="d-grid gap-2 col-10 mx-auto">
                                 <div class="btn-group">
                                     <a asp-action="Add" asp-controller="Product" class="btn btn-outline-success">Add Product</a>
                                     <a asp-action="Index" asp-controller="Product" asp-route-id="0" class="btn btn-outline-success">Get All Products</a>
@@ -45,7 +45,7 @@
                             <td>@item.UnitPrice.Value.ToString("#.##") €</td>
                             <td>@item.UnitsInStock</td>
                             <td>
-                                <div class="d-grid gap-2 col-6 mx-auto">
+                                <div class="d-grid gap-2 col-10 mx-auto">
                                     <div class="btn-group">
                                         <a asp-action="Update" asp-controller="Product" asp-route-id="@item.ProductId" type="button" class="btn btn-outline-primary">Update</a>
                                         <a type="button" class="btn btn-outline-danger">Delete</a>
