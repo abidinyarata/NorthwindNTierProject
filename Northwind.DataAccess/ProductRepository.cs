@@ -17,5 +17,11 @@ namespace Northwind.DataAccess
         {
             return _dbContext.Products.Where(p => p.CategoryId == id).ToList();
         }
+
+        public int Insert(Product product)
+        {
+            _dbContext.Products.Add(product);
+            return _dbContext.SaveChanges();
+        }
     }
 }

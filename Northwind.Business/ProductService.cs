@@ -1,6 +1,7 @@
 ﻿using Northwind.DataAccess;
 using Northwind.Entities;
 using Northwind.Model.ViewModels;
+using System;
 using System.Collections.Generic;
 
 namespace Northwind.Business
@@ -41,6 +42,30 @@ namespace Northwind.Business
             List<Product> productsByCategory = _productRepository.GetProductsByCategoryId(id);
             List<ListProductVM> viewProductsByCategory = SetProductView(productsByCategory);
             return viewProductsByCategory;
+        }
+
+        public bool AddProduct(AddProductVM productVM)
+        {
+            // İş kuralları uygulanır
+            if (productVM.UnitPrice < 0)
+            {
+                throw new Exception("UnitPrice 0'dan küçük olamaz");
+            }
+
+            if (productVM.UnitsInStock < 0)
+            {
+                throw new Exception("UnitsInStock 0'dan küçük olamaz");
+            }
+
+            Product product = new Product
+            {
+                CategoryId = productVM.CategoryId,
+                ProductName = productVM.ProductName,
+                UnitPrice = productVM.UnitPrice,
+                UnitsInStock = productVM.UnitsInStock
+            };
+
+            return _productRepository.Insert(product) > 0;
         }
     }
 }

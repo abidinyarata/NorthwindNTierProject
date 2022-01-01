@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Northwind.Business;
 using Northwind.Model.ViewModels;
+using System;
 using System.Collections.Generic;
 
 namespace Northwind.Web.UI.Controllers
@@ -33,7 +34,27 @@ namespace Northwind.Web.UI.Controllers
         [HttpPost]
         public IActionResult Add(AddProductVM product)
         {
-            return View();
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    bool check = _productService.AddProduct(product);
+                    if (check)
+                    {
+                        return RedirectToAction(nameof(Index));
+                    }
+                    else
+                    {
+                        ViewData["Message"] = "Kayıt Başarısız";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ViewData["Message"] = ex.Message;
+            }
+
+            return View(product);
         }
     }
 }
