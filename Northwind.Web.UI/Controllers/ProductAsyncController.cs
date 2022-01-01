@@ -19,5 +19,12 @@ namespace Northwind.Web.UI.Controllers
             List<ListProductVM> products = _productService.GetProducts();
             return PartialView("_productTable", products);
         }
+
+        public IActionResult GetProductByCategoryPartial(int id)
+        {
+            List<ListProductVM> products = _productService.GetProductsByCategoryId(id);
+            return PartialView("_productTable", products);
+        }
+
     }
 }

@@ -3,8 +3,6 @@
     ViewData["Title"] = "Product Async";
 }
 
-
-
 <div class="container">
     @*  @await Component.InvokeAsync("CategoryList")*@
     <vc:category-list tool-tip="navbar"></vc:category-list>
@@ -72,6 +70,19 @@
             $.ajax(
                 {
                     url: "/ProductAsync/GetProductPartial",
+                    type: "GET"
+                }
+            ).done(function (partialView) {
+                $('#productTable').html(partialView);
+            }).fail(function (jqXHR, textStatus) {
+
+            });
+        }
+
+        function GetProductTableByCategory(id) {
+            $.ajax(
+                {
+                    url: "/ProductAsync/GetProductByCategoryPartial/" + id,
                     type: "GET"
                 }
             ).done(function (partialView) {

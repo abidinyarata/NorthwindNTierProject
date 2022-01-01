@@ -4,7 +4,10 @@
     <nav class="nav d-flex justify-content-between">
         @foreach (CategoryVM item in Model)
         {
-            <a asp-action="Index" asp-controller="Product" asp-route-id="@item.CategoryID" class="p-2 link-secondary">@item.CategoryName</a>
+            @*<a asp-action="Index" asp-controller="Product" asp-route-id="@item.CategoryID" class="p-2 link-secondary">@item.CategoryName</a>*@
+
+            <a onclick="GetProductTableByCategory(@item.CategoryID)" class="p-2 link-secondary">@item.CategoryName</a>
+
         }
     </nav>
 </div>
