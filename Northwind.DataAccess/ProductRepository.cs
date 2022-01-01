@@ -23,5 +23,21 @@ namespace Northwind.DataAccess
             _dbContext.Products.Add(product);
             return _dbContext.SaveChanges();
         }
+
+        public Product GetProductByProductId(int id)
+        {
+            return _dbContext.Products.SingleOrDefault(p => p.ProductId == id);
+        }
+
+        public int Update(Product product)
+        {
+            Product oldProduct = GetProductByProductId(product.ProductId);
+            oldProduct.ProductName = product.ProductName;
+            oldProduct.CategoryId = product.CategoryId;
+            oldProduct.UnitsInStock = product.UnitsInStock;
+            oldProduct.UnitPrice = product.UnitPrice;
+
+            return _dbContext.SaveChanges();
+        }
     }
 }

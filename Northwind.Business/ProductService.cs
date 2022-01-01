@@ -67,5 +67,43 @@ namespace Northwind.Business
 
             return _productRepository.Insert(product) > 0;
         }
+
+        public AddProductVM GetProductByProductId(int id)
+        {
+            Product product = _productRepository.GetProductByProductId(id);
+            AddProductVM productVM = new AddProductVM
+            {
+                CategoryId = product.CategoryId,
+                ProductName = product.ProductName,
+                UnitPrice = product.UnitPrice,
+                UnitsInStock = product.UnitsInStock
+            };
+
+            return productVM;
+        }
+
+        public bool UpdateProduct(UpdateProductVM productVM)
+        {
+            if (productVM.UnitPrice < 0)
+            {
+                throw new Exception("UnitPrice 0'dan küçük olamaz");
+            }
+
+            if (productVM.UnitsInStock < 0)
+            {
+                throw new Exception("UnitsInStock 0'dan küçük olamaz");
+            }
+
+            Product product = new Product
+            {
+                ProductId = productVM.ProductId,
+                CategoryId = productVM.CategoryId,
+                ProductName = productVM.ProductName,
+                UnitPrice = productVM.UnitPrice,
+                UnitsInStock = productVM.UnitsInStock
+            };
+
+            return _productRepository.Update(product) > 0;
+        }
     }
 }

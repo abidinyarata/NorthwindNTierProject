@@ -47,8 +47,8 @@
                             <td>
                                 <div class="d-grid gap-2 col-6 mx-auto">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-outline-primary">Update</button>
-                                        <button type="button" class="btn btn-outline-danger">Delete</button>
+                                        <a asp-action="Update" asp-controller="Product" asp-route-id="@item.ProductId" type="button" class="btn btn-outline-primary">Update</a>
+                                        <a type="button" class="btn btn-outline-danger">Delete</a>
                                     </div>
                                 </div>
                             </td>
