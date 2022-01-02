@@ -86,11 +86,12 @@
         function AddProduct() {
             var product =
             {
-                "categoryId": $("#categoryId").val(),
+                "categoryId": $("#categoryIdSelected").val(),
                 "productName":$('#productName').val(),
                 "unitPrice": $('#unitPrice').val(),
                 "unitsInStock": $('#unitsInStock').val(),
             };
+            console.log($("#categoryId"));
 
             $.ajax(
                 {
@@ -99,9 +100,15 @@
                     data: product
                 }
             ).done(function (message) {
-                $('#info').html(
-                    '<div class="alert alert-danger">' + message + '</div>'
-                );
+                if (message == "Kayıt Başarılı") {
+                    $('#info').html(
+                        '<div class="alert alert-success">' + message + '</div>'
+                    );
+                } else {
+                    $('#info').html(
+                        '<div class="alert alert-danger">' + message + '</div>'
+                    );
+                }
                 GetProductTableByCategory(product.categoryId)
             });
         }

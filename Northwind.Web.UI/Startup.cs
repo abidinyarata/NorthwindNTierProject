@@ -42,7 +42,7 @@ namespace Northwind.Web.UI
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Product}/{action=Index}/{id?}");
+                    pattern: "{controller=ProductAsync}/{action=Index}/{id?}");
             });
         }
     }
