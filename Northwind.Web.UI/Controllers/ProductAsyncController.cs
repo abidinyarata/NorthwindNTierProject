@@ -27,12 +27,6 @@ namespace Northwind.Web.UI.Controllers
             return PartialView("_productTable", products);
         }
 
-        public IActionResult GetProductByProductId(int id)
-        {
-            AddProductVM product = _productService.GetProductByProductId(id);
-            return Json(product);
-        }
-
         public IActionResult AddData(AddProductVM product)
         {
             try

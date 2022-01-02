@@ -17,7 +17,7 @@
                     <th>
                         <div class="d-grid gap-2 col-10 mx-auto">
                             <div class="btn-group">
-                                <a onclick="ChangeFormForAdd()" class="btn btn-outline-success">Add Product</a>
+                                <a asp-action="Add" asp-controller="Product" class="btn btn-outline-success">Add Product</a>
                                 <a onclick="GetProductTable()" class="btn btn-outline-success">Get All Products</a>
                             </div>
                         </div>
@@ -27,13 +27,14 @@
             <tbody>
                 @foreach (ListProductVM item in Model)
                 {
-                    <tr onclick="ChangeFormForUpdate(@item.ProductId)">
+                    <tr>
                         <td>@item.ProductName</td>
                         <td>@item.UnitPrice.Value.ToString("#.##") €</td>
                         <td>@item.UnitsInStock</td>
                         <td>
                             <div class="d-grid gap-2 col-10 mx-auto">
                                 <div class="btn-group">
+                                    <a class=" btn btn-outline-primary">Update</a>
                                     <button class="btn btn-outline-danger">Delete</button>
                                 </div>
 
