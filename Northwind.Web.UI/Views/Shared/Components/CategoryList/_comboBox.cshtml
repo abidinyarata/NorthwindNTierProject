@@ -3,6 +3,7 @@
 <select class="form-select" name="CategoryId">
     @foreach (CategoryVM item in Model)
     {
-        <option value="@item.CategoryID">@item.CategoryName</option>
+        @*<option value="@item.CategoryID">@item.CategoryName</option>*@
+        <option id="categoryId" value="@item.CategoryID">@item.CategoryName</option>
     }
 </select>
