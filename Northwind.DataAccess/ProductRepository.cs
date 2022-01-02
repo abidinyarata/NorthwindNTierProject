@@ -1,4 +1,5 @@
 ﻿using Northwind.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -37,6 +38,12 @@ namespace Northwind.DataAccess
             oldProduct.UnitsInStock = product.UnitsInStock;
             oldProduct.UnitPrice = product.UnitPrice;
 
+            return _dbContext.SaveChanges();
+        }
+
+        public int Delete(int id)
+        {
+            _dbContext.Remove(GetProductByProductId(id));
             return _dbContext.SaveChanges();
         }
     }

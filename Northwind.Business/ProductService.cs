@@ -82,6 +82,11 @@ namespace Northwind.Business
             return productVM;
         }
 
+        public bool DeleteProduct(int id)
+        {
+            return _productRepository.Delete(id) > 0;
+        }
+
         public bool UpdateProduct(UpdateProductVM productVM)
         {
             if (productVM.UnitPrice < 0)

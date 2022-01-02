@@ -5,7 +5,9 @@
         <h3>
             Product List
         </h3>
+        <div id="deleteInfo">
 
+        </div>
     </div>
     <div class="card-body">
         <table class="table table-hover">
@@ -17,7 +19,7 @@
                     <th>
                         <div class="d-grid gap-2 col-10 mx-auto">
                             <div class="btn-group">
-                                <a asp-action="Add" asp-controller="Product" class="btn btn-outline-success">Add Product</a>
+                                <a onclick="ChangeFormForAdd()" class="btn btn-outline-success">Add Product</a>
                                 <a onclick="GetProductTable()" class="btn btn-outline-success">Get All Products</a>
                             </div>
                         </div>
@@ -27,15 +29,14 @@
             <tbody>
                 @foreach (ListProductVM item in Model)
                 {
-                    <tr>
+                    <tr onclick="ChangeFormForUpdate(@item.ProductId)">
                         <td>@item.ProductName</td>
                         <td>@item.UnitPrice.Value.ToString("#.##") €</td>
                         <td>@item.UnitsInStock</td>
                         <td>
                             <div class="d-grid gap-2 col-10 mx-auto">
                                 <div class="btn-group">
-                                    <a class=" btn btn-outline-primary">Update</a>
-                                    <button class="btn btn-outline-danger">Delete</button>
+                                    <button  onclick="DeleteProduct(@item.ProductId)" class="btn btn-outline-danger">Delete</button>
                                 </div>
 
                             </div>

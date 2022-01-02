@@ -15,7 +15,7 @@
         <div class="col-3">
             <div class="card">
                 <div class="card-header text-center">
-                    <h3>Product</h3>
+                    <h3 id="title">Product</h3>
                 </div>
                 <div class="card-body">
                     <form method="post">
@@ -37,7 +37,7 @@
                         </div>
                         <div class="mb-3">
                             <div class="d-grid gap-2">
-                                <button onclick="AddProduct()" type="button" class="btn btn-primary">Add Product</button>
+                                <button id="AddOrUpdateButton" onclick="AddProduct()" type="button" class="btn btn-primary">Add Product</button>
                             </div>
                         </div>
                     </form>
@@ -86,12 +86,11 @@
         function AddProduct() {
             var product =
             {
-                "categoryId": $("#categoryIdSelected").val(),
+                "categoryId": $("#categoryIdSelect").val(),
                 "productName":$('#productName').val(),
                 "unitPrice": $('#unitPrice').val(),
                 "unitsInStock": $('#unitsInStock').val(),
             };
-            console.log($("#categoryId"));
 
             $.ajax(
                 {
@@ -110,6 +109,90 @@
                     );
                 }
                 GetProductTableByCategory(product.categoryId)
+            });
+        }
+
+        function UpdateProduct() {
+            var product =
+            {
+                "categoryId": $("#categoryIdSelect").val(),
+                "productName": $('#productName').val(),
+                "unitPrice": $('#unitPrice').val(),
+                "unitsInStock": $('#unitsInStock').val(),
+                "productId": $('#AddOrUpdateButton').attr("data-id")
+            };
+
+            $.ajax(
+                {
+                    url: "/ProductAsync/UpdateData",
+                    type: "POST",
+                    data: product
+                }
+            ).done(function (message) {
+                if (message == "Güncelleme işlemi başarılı") {
+                    $('#info').html(
+                        '<div class="alert alert-success">' + message + '</div>'
+                    );
+                } else {
+                    $('#info').html(
+                        '<div class="alert alert-danger">' + message + '</div>'
+                    );
+                }
+                GetProductTableByCategory(product.categoryId)
+            });
+        }
+
+        $("#AddOrUpdateButton").click(function () {
+            productId = $("#AddOrUpdateButton").attr("data-id");
+            if (productId > 0) {
+                UpdateProduct();
+            } else {
+                AddProduct();
+            }
+        });
+
+        function ChangeFormForAdd() {
+            $("#categoryIdSelect").val(1);
+            $("#productName").val("");
+            $("#unitPrice").val("");
+            $("#unitsInStock").val("");
+            $("#title").text("Add Product");
+            $("#AddOrUpdateButton").text("Add Product").attr("data-id", 0);
+        }
+
+        function ChangeFormForUpdate(id) {
+            $.ajax(
+                {
+                    url: "/ProductAsync/GetProductByProductId/" + id,
+                    type: "GET"
+                }
+            ).done(function (data) {
+                $("#categoryIdSelect").val(data.categoryId);
+                $("#productName").val(data.productName);
+                $("#unitPrice").val(data.unitPrice);
+                $("#unitsInStock").val(data.unitsInStock);
+                $("#title").text("Update Product");
+                $("#AddOrUpdateButton").text("Update Product").attr("data-id", id);
+            });
+        }
+
+        function DeleteProduct() {
+            $.ajax(
+                {
+                    url: "/ProductAsync/DeleteData/" + id,
+                    type: "GET"
+                }
+            ).done(function (message) {
+                if (message == "Silme başarılı") {
+                    $('#deleteInfo').html(
+                        '<div class="alert alert-success">' + message + '</div>'
+                    );
+                } else {
+                    $('#deleteInfo').html(
+                        '<div class="alert alert-danger">' + message + '</div>'
+                    );
+                }
+                GetProductTableByCategory($("#categoryIdSelect").val());
             });
         }
        
