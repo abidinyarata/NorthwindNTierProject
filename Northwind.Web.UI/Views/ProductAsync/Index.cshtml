@@ -37,7 +37,7 @@
                         </div>
                         <div class="mb-3">
                             <div class="d-grid gap-2">
-                                <button id="AddOrUpdateButton" onclick="AddProduct()" type="button" class="btn btn-primary">Add Product</button>
+                                <button id="AddOrUpdateButton" type="button" class="btn btn-primary">Add Product</button>
                             </div>
                         </div>
                     </form>
@@ -48,12 +48,12 @@
             </div>
         </div>
         <div id="productTable" class="col-9">
-      
+
         </div>
     </div>
 </div>
 
-@section Scripts{ 
+@section Scripts {
     <script>
         $(document).ready(function () {
             GetProductTable();
@@ -87,7 +87,7 @@
             var product =
             {
                 "categoryId": $("#categoryId").val(),
-                "productName":$('#productName').val(),
+                "productName": $('#productName').val(),
                 "unitPrice": $('#unitPrice').val(),
                 "unitsInStock": $('#unitsInStock').val(),
             };
@@ -108,13 +108,48 @@
             });
         }
 
+        function UpdateProduct() {
+            var product =
+            {
+                "categoryId": $("#categoryId").val(),
+                "productName": $('#productName').val(),
+                "unitPrice": $("#unitPrice").val(),
+                "unitsInStock": $('#unitsInStock').val(),
+                "productId": $("#AddOrUpdateButton").attr("data-id");
+            };
+
+            $.ajax(
+                {
+                    url: "/ProductAsync/UpdateData",
+                    type: "POST",
+                    data: product
+                }
+            ).done(function () {
+                if (message == "Kayıt Başarılı") {
+                    $('#info').html('<div class="alert alert-success">' + message + '</div>');
+                } else {
+                    $('#info').html('<div class="alert alert-danger">' + message + '</div>');
+                }
+                GetProductTableByCategory(product.categoryId)
+            });
+        }
+
+        $("#AddOrUpdateButton").click(function () {
+            productId = $("#AddOrUpdateButton").attr("data-id");
+            if (productId > 0) {
+                UpdateProduct();
+            } else {
+                AddProduct();
+            }
+        });
+
         function ChangeFormForAdd() {
             $('#categoryId').val(1);
             $('#productName').val('');
             $('#unitPrice').val('');
             $('#unitsInStock').val('');
             $('#title').text('Add Product'),
-            $('#AddOrUpdateButton').text('Add Product').attr('data-id', 0);
+                $('#AddOrUpdateButton').text('Add Product').attr('data-id', 0);
         }
 
 
@@ -132,9 +167,6 @@
                 $('#title').text('Update Product');
                 $('#AddOrUpdateButton').text('Update Product').attr('data-id', id);
             });
-
-
-           
         }
 
     </script>

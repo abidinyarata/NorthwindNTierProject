@@ -59,5 +59,32 @@ namespace Northwind.Web.UI.Controllers
                 return Json(ex.Message);
             }
         }
+
+        public IActionResult UpdateData(UpdateProductVM product)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    bool check = _productService.UpdateProduct(product);
+                    if (check)
+                    {
+                        return Json("Güncelleme işlemi başarılı");
+                    }
+                    else
+                    {
+                        return Json("Güncelleme işlemi başarısız");
+                    }
+                }
+                else
+                {
+                    return Json("Verilerinizi kontrol edin");
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(ex.Message);
+            }
+        }
     }
 }
